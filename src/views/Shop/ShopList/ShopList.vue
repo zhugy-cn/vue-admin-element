@@ -1,12 +1,11 @@
 <template>
-  <div>
-    公共的父组件
-    <router-view></router-view>
+  <div class="page-shopList">
+    店铺列表
   </div>
 </template>
 <script>
 export default {
-  name: "demo",
+  name: "shopList",
   data() {
     return {};
   }

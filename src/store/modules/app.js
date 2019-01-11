@@ -2,9 +2,13 @@ export default {
   state: {
     sideStatus: false,    // 是否折叠侧边栏
     globalLoading: false,   // loading 状态
-    loadingMessage: '正在拼命加载中...'
+    loadingMessage: '正在拼命加载中...',
+    isAni: false
   },
   mutations: {
+    SET_ANI(state, status) {
+      state.isAni = status;
+    },
     // 设置全局 loading
     SET_GLOBAL_LOADING(state, dataObj) {
       if (typeof dataObj === "object") {

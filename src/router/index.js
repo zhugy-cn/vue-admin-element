@@ -23,16 +23,22 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
   const { token } = store.getters;
   const toName = to.name;
-  // if (!token && !withList.includes(toName)) {
-  //   return next('/login');
-  // }
-  // if (token && withList.includes(toName)) {
-  //   return next('/dashboard');
-  // }
+  if (!token && !withList.includes(toName)) {
+    NProgress.done();
+    return next('/login');
+  }
+  if (token && withList.includes(toName)) {
+    NProgress.done();
+    return next('/dashboard');
+  }
   next()
 })
 
 router.afterEach(() => {
   NProgress.done()
+  if (!store.getters.isAni) {
+    console.log(11);
+    store.commit('SET_ANI', true)
+  }
 })
 export default router;

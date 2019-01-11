@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="login-title">趣免单-总代理端</div>
+    <div class="login-title">趣免单 - 总代理端</div>
     <el-form
       class="form-con"
       size="small"

@@ -65,10 +65,14 @@ export default {
             v.init = true;
           }
         });
-        if (item.children.length === 1 && !item.alwaysShow) {
-          return item.children[0];
-        } else {
+        if (item.children.length > 1) {
           return item;
+        } else {
+          if (item.meta && item.meta.alwaysShow) {
+            return item;
+          } else {
+            return item.children[0];
+          }
         }
       });
       return tempRoutes;

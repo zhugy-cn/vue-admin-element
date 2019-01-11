@@ -32,6 +32,7 @@ div:focus {
 
 #app,
 .app-wrapper {
+  overflow: hidden;
   position: relative;
   height: 100%;
   color: #333;

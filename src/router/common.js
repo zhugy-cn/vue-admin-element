@@ -12,7 +12,7 @@ export default [
         alwaysShow: true,
         meta: {
           title: '首页面板',
-          icon: 'printer',
+          icon: 'z-shouye',
           homePage: true,   // 表示这是首页，必须有
         },
         component: () => import(
