@@ -32,8 +32,18 @@
         display: inline-block;
       }
     }
-  } //   右边内容
+  } 
+  .app-scroll-wrap {
+    flex: 1;
+    overflow: auto;
+    background-color: #f5f7f9;
+  }
+  
+  //   右边内容
   .main-container {
+    min-width: 1200px;
+    height: 100%;
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -145,6 +155,11 @@
       flex: 1;
       padding: 14px;
       overflow: hidden;
+      position: relative;
+    }
+    .app-main_wrap {
+      height: 100%;
+      position: relative;
     }
   }
 }
@@ -181,4 +196,25 @@
 
 .breadcrumb-leave-active {
   position: absolute;
+}
+
+
+// 页面
+/*fade-transform*/
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all .4s;
+}
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }

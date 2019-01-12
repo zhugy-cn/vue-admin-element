@@ -1,4 +1,3 @@
-// import { getUserInfo_api } from '_api/user'
 export default {
   namespaced: true,
   state: {

@@ -37,7 +37,6 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
   if (!store.getters.isAni) {
-    console.log(11);
     store.commit('SET_ANI', true)
   }
 })

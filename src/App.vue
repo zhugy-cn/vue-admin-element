@@ -6,13 +6,10 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
-    <transition
-      v-if="isAni"
-      name="page"
-    >
-      <router-view />
+    <transition v-if="isAni" name="page">
+      <router-view/>
     </transition>
-    <router-view v-else />
+    <router-view v-else/>
   </div>
 </template>
 
@@ -43,7 +40,7 @@ export default {
   z-index: 22;
 }
 .page-enter {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .page-leave-to {

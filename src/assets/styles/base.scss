@@ -39,3 +39,8 @@ div:focus {
   font-size: 14px;
   line-height: 1;
 }
+.app-main_wrap > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

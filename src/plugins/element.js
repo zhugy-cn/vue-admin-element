@@ -20,6 +20,10 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  // 表格
+  Table,
+  TableColumn,
+  Pagination,
 } from 'element-ui';
 
 Vue.use(Loading);
@@ -37,5 +41,8 @@ Vue.use(BreadcrumbItem);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Pagination);
 
 Vue.prototype.$message = Message;

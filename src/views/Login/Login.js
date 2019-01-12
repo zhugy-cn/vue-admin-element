@@ -35,7 +35,8 @@ export default {
   },
   destroyed() {
     clearInterval(this.createBassTimer);
-    cancelAnimationFrame(this.request)
+    cancelAnimationFrame(this.request);
+    window.onresize = null;
   },
   methods: {
     _initCanvas() {

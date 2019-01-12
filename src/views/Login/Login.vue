@@ -3,11 +3,7 @@
     <canvas ref="canvas"></canvas>
     <div :class="['login-container',{active:currentCom=='ResetPassCom'}]">
       <transition name="zui-zoom">
-        <!-- <keep-alive :include="['loginCom']"> -->
-        <component
-          :is="currentCom"
-          :currentCom.sync="currentCom"
-        ></component>
+        <component :is="currentCom" :currentCom.sync="currentCom"></component>
       </transition>
     </div>
   </div>

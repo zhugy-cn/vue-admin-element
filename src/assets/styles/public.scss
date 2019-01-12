@@ -1,0 +1,35 @@
+// 全局样式
+.zui-shadow {
+  border-radius: 4px;
+  transition: all .5s;
+  box-shadow: 0px 2px 15px rgba(7, 17, 27, .1);
+  background-color: #fff;
+  &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 2px 15px rgba(0, 7, 17, .3);
+  }
+}
+
+// 表格内容
+.zui-main--container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  .el-form-item {
+    margin-bottom: 0;
+  }
+  .zui-main__search {
+    padding: 14px 20px;
+  }
+  .el-table td {
+    padding: 10px 0;
+  }
+}
+
+// 分页
+.el-pagination {
+  border: 1px solid #ebeef5;
+  border-top: none;
+  padding: 10px 20px;
+  background: #fff;
+}
