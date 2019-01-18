@@ -1,9 +1,6 @@
 <template>
   <div class="navbar">
-    <div
-      :class="['side-trigger',{'active':sideStatus}]"
-      @click="SET_SIDE_STATUS"
-    >
+    <div :class="['side-trigger',{'active':sideStatus}]" @click="SET_SIDE_STATUS">
       <i class="el-icon-z-caidan"></i>
     </div>
     <el-breadcrumb>
@@ -15,11 +12,7 @@
           >
             <span :class="{'cur': index===breadcrumbList.length-1}">{{item.meta.title}}</span>
           </el-breadcrumb-item>
-          <el-breadcrumb-item
-            v-else
-            :to="item.path"
-            :key="item.path"
-          >{{item.meta.title}}</el-breadcrumb-item>
+          <el-breadcrumb-item v-else :to="item.path" :key="item.path">{{item.meta.title}}</el-breadcrumb-item>
         </template>
       </transition-group>
     </el-breadcrumb>
@@ -28,9 +21,9 @@
       <span class="el-dropdown-link">
         <img
           src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3303741086,3211617265&fm=27&gp=0.jpg"
-          alt=""
+          alt
         >
-        <i class='el-icon-caret-bottom'></i>
+        <i class="el-icon-caret-bottom"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="resetPass">修改密码</el-dropdown-item>
@@ -83,8 +76,10 @@ export default {
       this.$router.push("/login");
     },
     // 重置密码
-    resetPass() {
+    async resetPass() {
       console.log("重置密码");
+      await this.logoutAct();
+      this.$router.push("/login/reset");
     }
   },
   watch: {

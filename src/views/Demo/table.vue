@@ -1,5 +1,5 @@
 <template>
-  <div class="page-salesmanList">
+  <div class="page-adminList">
     <section class="zui-header-container"></section>
     <section class="zui-main--container zui-shadow">
       <section class="zui-main__search">
@@ -30,7 +30,7 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="queryList.page"
+        :current-page="queryList.pageNum"
         :page-size="queryList.pageSize"
         :page-sizes="[20,40,60]"
         layout="total, sizes, prev, pager, next, jumper"
@@ -39,6 +39,44 @@
     </section>
   </div>
 </template>
-<script src="./SalesmanList.js"></script>
-<style lang='scss' scoped>
-</style>
+
+<script>
+import table from "@/mixins/table";
+export default {
+  name: "orderList",
+  mixins: [table],
+  data() {
+    return {
+      autoList: false,
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1517 弄"
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1519 弄"
+        },
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄"
+        },
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        }
+      ]
+    };
+  },
+  created() {}
+};
+</script>

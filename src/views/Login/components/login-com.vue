@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="login-title">趣免单 - 总代理端</div>
+    <div class="login-title">趣免单 - 管理端</div>
     <el-form
       class="form-con"
       size="small"
@@ -10,12 +10,7 @@
       @submit.native.prevent
     >
       <el-form-item prop="phone">
-        <el-input
-          maxlength="11"
-          v-model="formData.phone"
-          clearable
-          placeholder="请输入手机号"
-        >
+        <el-input maxlength="11" v-model="formData.phone" clearable placeholder="请输入手机号">
           <template slot="prepend">
             <i class="el-icon-z-mobile"></i>
           </template>
@@ -40,13 +35,10 @@
           style="width: 100%"
           type="primary"
           @click="login"
-          :loading='btnLoading'
+          :loading="btnLoading"
         >登录</el-button>
       </el-form-item>
-      <div
-        class="reset-password"
-        @click="changeCurrentCom('ResetPassCom')"
-      >忘记密码</div>
+      <div class="reset-password" @click="changeCurrentCom('ResetPassCom')">忘记密码</div>
     </el-form>
   </div>
 </template>
@@ -101,11 +93,18 @@ export default {
           this.btnLoading = true;
           this.$global.openLoading("登录中...");
           try {
-            let { token } = await getToken_api(this.formData);
-            await this.loginAct(token);
+            let { token, userInfo } = await getToken_api(this.formData);
+            await this.loginAct({ token, userName: userInfo.userName });
             this.$router.push("/dashboard");
             this.$global.closeLoading();
           } catch (error) {
+            if (typeof error == "object") {
+              this.$message({
+                type: "error",
+                message: error.errMsg,
+                showClose: true
+              });
+            }
             this.btnLoading = false;
           }
         }

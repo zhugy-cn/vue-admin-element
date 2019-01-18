@@ -1,7 +1,7 @@
 <template>
   <div class="page-shopList">
     <section class="zui-header-container"></section>
-    <section class="zui-main--container zui-shadow">
+    <section v-if="false" class="zui-main--container zui-shadow">
       <section class="zui-main__search">
         <el-form class="search-com" :inline="true" size="mini" @submit.native.prevent>
           <el-form-item label="手机号码">
@@ -37,6 +37,7 @@
         :total="total"
       />
     </section>
+    <div>此功能正在开发中...</div>
   </div>
 </template>
 <script src="./ShopList.js"></script>

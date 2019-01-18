@@ -2,16 +2,17 @@ export default {
   data() {
     return {
       autoList: true,
+      multilevel: false,
       tableData: [],
       total: 0,
       tableLoading: false,
       queryList: {
-        page: 1,
+        pageNum: 1,
         pageSize: 20,
       },
     }
   },
-  mounted() {
+  created() {
     if (this.autoList) {
       this.getList();
     }
@@ -21,19 +22,41 @@ export default {
     getList() {
       return new Promise(async (resolve, reject) => {
         this.tableLoading = true;
-        if (this.beforeGetList && typeof this.beforeGetList == "function") {
-          this.beforeGetList()
+        if (this._beforeGetList && typeof this._beforeGetList == "function") {
+          this._beforeGetList()
         }
         try {
+          let list = [];
+          let total = 0;
           let res = await this.getListApi(this.queryList);
-          if (this.afterGetList && typeof this.afterGetList == "function") {
-            this.afterGetList(res)
+
+          if (res) {
+            // 多级
+            if (this.multilevel) {
+              if (res.pageInfo) {
+                list = res.pageInfo.list || [];
+                total = res.pageInfo.total || 0;
+              }
+              if (res.detailResponseParams) {
+                list = res.detailResponseParams.list || [];
+                total = res.detailResponseParams.total || 0;
+              }
+            } else {
+              list = res.list || [];
+              total = res.total || 0;
+            }
           }
-          this.total = res.count;
-          this.tableData = res.rows;
+
+          if (this._afterGetList && typeof this._afterGetList == "function" && res) {
+            this._afterGetList(res)
+          }
+
+          this.total = total;
+          this.tableData = list;
           this.tableLoading = false;
           resolve();
         } catch (error) {
+          console.log(error);
           this.tableLoading = false;
           reject()
         }
@@ -41,23 +64,26 @@ export default {
     },
     // 改变每页显示的条数
     handleSizeChange(size) {
-      this.queryList.page = 1;
+      this.queryList.pageNum = 1;
       this.queryList.pageSize = size;
       this.getList();
     },
     // 改变当前页
     handleCurrentChange(currentPage) {
-      this.queryList.page = currentPage;
+      this.queryList.pageNum = currentPage;
       this.getList();
     },
     // 搜索数据
     handleSearch() {
-      this.queryList.page = 1;
+      this.queryList.pageNum = 1;
       this.getList();
     },
     // 重置表单
     resetForm() {
-
+      this.queryList = {
+        pageNum: 1,
+        pageSize: 20,
+      }
     }
   }
 }

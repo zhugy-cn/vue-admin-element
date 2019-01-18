@@ -32,6 +32,9 @@ function errorLog(data, config) {
 }
 
 
+const reLogin = ['GW1004']
+const whiteList = ['GW0000', 'GW0001', 'GW0002', 0];
+
 // 创建axios实例
 const ajax = axios.create({
   baseURL,
@@ -42,8 +45,9 @@ let flag = true;
 
 // 请求 拦截器
 ajax.interceptors.request.use(config => {
-  if (store.getters.token) {
-    config.headers['x-access-token'] = store.getters.token
+  let token = store.getters.token;
+  if (token) {
+    config.headers['token'] = token;
   }
   return config;
 }, error => {
@@ -54,20 +58,20 @@ ajax.interceptors.request.use(config => {
 ajax.interceptors.response.use(response => {
   setTimeout(() => {
     closeGlobalLoading()
-  }, 500)
+  }, 100)
   const { data } = response
-  if (data.code === 0 || data.code === 8888) {
+  if (whiteList.includes(data.code)) {
     return response.data.data
   } else {
-    let errorMsg = data.message
-    if (data.code === 40000 || data.code === 30003 && flag) {
-      store.dispatch('logoutAct')
-      flag = false
+    let errorMsg = data.message;
+    if (reLogin.includes(data.code) && flag) {
+      store.dispatch('user/logoutAct');
+      flag = false;
       MessageBox.alert(errorMsg, '警告', {
         confirmButtonText: '确定',
         callback: () => {
-          router.push("/login")
-          flag = true
+          router.push("/login");
+          flag = true;
         }
       });
     } else {
