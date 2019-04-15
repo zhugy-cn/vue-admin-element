@@ -11,7 +11,7 @@ export default [
         name: 'dashboard',
         alwaysShow: true,
         meta: {
-          title: '首页面板',
+          title: '我的账户',
           icon: 'z-shouye',
           homePage: true,   // 表示这是首页，必须有
         },
@@ -23,7 +23,7 @@ export default [
     ]
   },
   {
-    path: '/login',
+    path: '/login/:type?',
     name: 'login',
     component: () => import(
       /* webpackChunkName: "common" */

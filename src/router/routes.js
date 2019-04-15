@@ -5,14 +5,18 @@ import common from './common'
 import multilevel from './multilevel'
 import shop from './shop'
 import order from './order'
-import salesman from './salesman'
+import personal from './personal'
 import admin from './admin'
+import account from './account'
+import ticket from './ticket'
 
 export default [
   ...common,
   // multilevel,
-  shop,
-  order,
-  salesman,
-  admin,
+  account,
+  // shop,
+  // order,
+  personal,
+  ticket,
+  // admin,
 ]

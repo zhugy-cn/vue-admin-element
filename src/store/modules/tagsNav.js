@@ -28,6 +28,15 @@ export default {
           path: route.path,
           name: route.name
         })
+        // tag栏最多只能存在6个
+        if (state.tagsList.length > 5) {
+          let routeName = state.tagsList[1].name;
+          let tagIdx = state.tagsList.findIndex(v => v.name === routeName)
+          let cacheIdx = state.cachedRoutes.findIndex(v => v === routeName)
+          state.tagsList.splice(tagIdx, 1)
+          cacheIdx !== -1 && state.cachedRoutes.splice(cacheIdx, 1)
+          setTagsInSessionStorage(state.tagsList)
+        }
       }
       if (!state.cachedRoutes.some(v => v === route.name)) {
         !route.meta.noCache && state.cachedRoutes.push(route.name)

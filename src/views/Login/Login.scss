@@ -5,6 +5,16 @@
   canvas {
     display: block;
   }
+  .logo-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    img {
+      height: 60px;
+      margin-right: 20px;
+    }
+  }
+  
   .login-container {
     position: absolute;
     right: 160px;
@@ -15,7 +25,7 @@
     background-color: #fff;
     border-radius: 4px;
     overflow: hidden;
-    transition: all .5s;
+    transition: all .4s;
     &.active {
       min-height: 332px;
     }
@@ -57,11 +67,11 @@
 }
 
 .zui-zoom-enter-active {
-  animation: zoomIn 0.6s;
+  animation: zoomIn 0.4s;
 }
 
 .zui-zoom-leave-active {
-  animation: zoomOut 0.6s;
+  animation: zoomOut 0.4s;
 }
 
 @keyframes zoomIn {

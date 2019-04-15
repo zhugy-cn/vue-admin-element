@@ -1,0 +1,20 @@
+.page-ticketSell {
+  align-items: center;
+  .el-steps--horizontal {
+    width: 100%;
+    padding: 60px 0 40px;
+  }
+  .zui-ticket-main {
+    width: 80%;
+    flex: 1;
+    height: 1px;
+  }
+  
+  .zui-button-box {
+    padding: 40px 0 80px;
+    text-align: center;
+    .el-button {
+      width: 120px;
+    }
+  }
+}

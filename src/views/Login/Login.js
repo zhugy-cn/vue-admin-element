@@ -28,9 +28,15 @@ export default {
       createBassTimer: null
     };
   },
+  created() {
+    let type = this.$route.params.type;
+    if (type && type === 'reset') {
+      this.currentCom = 'ResetPassCom';
+    }
+  },
   mounted() {
     this.$nextTick(() => {
-      this._initCanvas();
+      // this._initCanvas();
     })
   },
   destroyed() {

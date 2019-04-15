@@ -10,31 +10,15 @@
       @submit.native.prevent
     >
       <el-form-item prop="phone">
-        <el-input
-          maxlength="11"
-          v-model="formData.phone"
-          clearable
-          placeholder="请输入手机号"
-        >
+        <el-input maxlength="11" v-model="formData.phone" clearable placeholder="请输入手机号">
           <template slot="prepend">
             <i class="el-icon-z-mobile"></i>
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item
-        class="smsCode"
-        prop="smsCode"
-      >
-        <el-input
-          maxlength="6"
-          v-model="formData.smsCode"
-          clearable
-          placeholder="请输入验证码"
-        >
-          <i
-            slot="prepend"
-            class="el-icon-z-safe"
-          ></i>
+      <el-form-item class="smsCode" prop="smsCode">
+        <el-input maxlength="6" v-model="formData.smsCode" clearable placeholder="请输入验证码">
+          <i slot="prepend" class="el-icon-z-safe"></i>
         </el-input>
         <el-button
           @click="getSmsCode"
@@ -50,10 +34,7 @@
           placeholder="请输入密码"
           type="password"
         >
-          <i
-            slot="prepend"
-            class="el-icon-z-lock"
-          ></i>
+          <i slot="prepend" class="el-icon-z-lock"></i>
         </el-input>
       </el-form-item>
       <el-form-item>
@@ -65,19 +46,12 @@
           @click="updatePassword"
         >重置密码</el-button>
       </el-form-item>
-      <div
-        class="reset-password"
-        @click="$emit('update:currentCom','LoginCom')"
-      >返回登录</div>
+      <div class="reset-password" @click="$emit('update:currentCom','LoginCom')">返回登录</div>
     </el-form>
   </div>
 </template>
 <script>
-import {
-  getSmsCode_api,
-  updatePassword_api,
-  checkSmsCode_api
-} from "_api/user";
+import { getSmsCode_api, updatePassword_api } from "_api/user";
 import mixin from "./mixin";
 export default {
   name: "resetPass",
@@ -104,7 +78,7 @@ export default {
         smsCode: ""
       },
       verifyCode: {
-        countDown: 5,
+        countDown: 120,
         content: "验证码",
         disabled: false
       },
@@ -184,7 +158,6 @@ export default {
           this.btnLoading = true;
           this.$global.openLoading();
           try {
-            await checkSmsCode_api(this.formData.phone);
             await updatePassword_api(this.formData);
             this.$global.closeLoading();
             this.$message.success("密码修改成功，请重新登录");

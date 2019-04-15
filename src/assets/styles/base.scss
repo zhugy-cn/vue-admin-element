@@ -30,6 +30,12 @@ div:focus {
   outline: none;
 }
 
+ul,li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 #app,
 .app-wrapper {
   overflow: hidden;
@@ -38,4 +44,9 @@ div:focus {
   color: #333;
   font-size: 14px;
   line-height: 1;
+}
+.app-main_wrap > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
